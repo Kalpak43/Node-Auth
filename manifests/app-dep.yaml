@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-auth-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-auth-app
+  template:
+    metadata:
+      labels:
+        app: node-auth-app
+    spec:
+      containers:
+      - name: node-auth-app
+        image: csag095/node_auth:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_URI
+          value: "mongodb://admin:password@mongo-db-service:27017/mydatabase?authSource=admin"
