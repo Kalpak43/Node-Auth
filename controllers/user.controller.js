@@ -79,11 +79,11 @@ async function signup(req, res) {
     const resUser = savedUser.toObject();
     delete resUser.password;
 
-    await sendMail({
-      email: email,
-      emailType: "VERIFY",
-      userId: savedUser._id,
-    });
+    // await sendMail({
+    //   email: email,
+    //   emailType: "VERIFY",
+    //   userId: savedUser._id,
+    // });
 
     res.status(201).json({
       message: "User created successfully",

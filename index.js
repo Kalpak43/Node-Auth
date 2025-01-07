@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
+const cors = require("cors");
 dotenv.config();
 
 const { connect } = require("./db/db");
@@ -8,6 +9,13 @@ const userController = require("./controllers/user.controller");
 
 const app = express();
 const port = 8080;
+
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5173",
+    credentials: true,
+  })
+);
 
 let dbConnected = false;
 connect()
